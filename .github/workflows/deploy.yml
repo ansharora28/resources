@@ -15,18 +15,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-
-      - name: Install Dirmaker
-        run: pip install dirmaker
-
+          python-version: '3.11'
+      
+      - name: Install Dirmaker with Cython constraint
+        run: |
+          echo 'Cython < 3.0' > /tmp/constraint.txt
+          PIP_CONSTRAINT=/tmp/constraint.txt pip install dirmaker
+      
       - name: Build site
         run: dirmaker build
-
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
