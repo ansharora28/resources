@@ -27,7 +27,7 @@ jobs:
           PIP_CONSTRAINT=/tmp/constraint.txt pip install dirmaker
       
       - name: Build site
-        run: dirmaker build
+        run: dirmaker --build
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
